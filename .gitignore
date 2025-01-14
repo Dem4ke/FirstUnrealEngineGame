@@ -1,0 +1,8 @@
+#ignores all files whith VS and UE generate
+.vs/
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vsconfig
+*.sln

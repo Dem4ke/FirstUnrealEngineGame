@@ -1,0 +1,65 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "FGPlayerController.h"
+#include "../FGBaseCharacter.h"
+
+void AFGPlayerController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	// Если будет передано что-то невалидное, то это не страшно, указатель может быть пустой
+	CachedBaseCharacter = Cast<AFGBaseCharacter>(InPawn);
+}
+
+void AFGPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+	InputComponent->BindAxis("MoveForward", this, &AFGPlayerController::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &AFGPlayerController::MoveRight);
+	InputComponent->BindAxis("Turn", this, &AFGPlayerController::Turn);
+	InputComponent->BindAxis("LookUp", this, &AFGPlayerController::LookUp);
+
+	InputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &AFGPlayerController::Jump);
+}
+
+void AFGPlayerController::MoveForward(float Value)
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->MoveForward(Value);
+	}
+}
+
+void AFGPlayerController::MoveRight(float Value)
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->MoveRight(Value);
+	}
+}
+
+void AFGPlayerController::Turn(float Value)
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->Turn(Value);
+	}
+}
+
+void AFGPlayerController::LookUp(float Value)
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->LookUp(Value);
+	}
+}
+
+void AFGPlayerController::Jump()
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->Jump();
+	}
+}
