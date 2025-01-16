@@ -6,9 +6,24 @@
 #include "Animation/AnimInstance.h"
 #include "FGBaseAnimInstance.generated.h"
 
+class AFGBaseCharacter;
+
 UCLASS()
 class FIRSTGAME_API UFGBaseAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void NativeBeginPlay() override;
+	virtual void NativeUpdateAnimation(float DeltaTime) override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character animation")
+	float Speed = 0.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character animation")
+	bool bIsFalling = false;
+
+private:
+	TSoftObjectPtr<AFGBaseCharacter> CachedBaseCharacter; // Pointer to the base character
 };

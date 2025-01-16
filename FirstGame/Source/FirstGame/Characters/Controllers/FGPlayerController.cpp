@@ -20,6 +20,8 @@ void AFGPlayerController::SetupInputComponent()
 	InputComponent->BindAxis("MoveRight", this, &AFGPlayerController::MoveRight);
 	InputComponent->BindAxis("Turn", this, &AFGPlayerController::Turn);
 	InputComponent->BindAxis("LookUp", this, &AFGPlayerController::LookUp);
+	InputComponent->BindAxis("TurnAtRate", this, &AFGPlayerController::TurnAtRate);
+	InputComponent->BindAxis("LookUpAtRate", this, &AFGPlayerController::LookUpAtRate);
 
 	InputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &AFGPlayerController::Jump);
 }
@@ -53,6 +55,22 @@ void AFGPlayerController::LookUp(float Value)
 	if (CachedBaseCharacter.IsValid())
 	{
 		CachedBaseCharacter->LookUp(Value);
+	}
+}
+
+void AFGPlayerController::TurnAtRate(float Value)
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->TurnAtRate(Value);
+	}
+}
+
+void AFGPlayerController::LookUpAtRate(float Value)
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->LookUpAtRate(Value);
 	}
 }
 
