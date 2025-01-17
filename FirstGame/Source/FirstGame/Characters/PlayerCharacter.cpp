@@ -64,3 +64,28 @@ void APlayerCharacter::LookUpAtRate(float Value)
 {
 	AddControllerPitchInput(Value* BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
+
+void APlayerCharacter::OnStartCrouch(float HalfHeightAdjust, float ScaleHalfHeightAdjuts)
+{
+	Super::OnStartCrouch(HalfHeightAdjust, ScaleHalfHeightAdjuts);
+	SpringArmComponent->TargetOffset += FVector(0.f, 0.f, HalfHeightAdjust);
+}
+
+void APlayerCharacter::OnEndCrouch(float HalfHeightAdjust, float ScaleHalfHeightAdjuts)
+{
+	Super::OnEndCrouch(HalfHeightAdjust, ScaleHalfHeightAdjuts);
+	SpringArmComponent->TargetOffset -= FVector(0.f, 0.f, HalfHeightAdjust);
+}
+
+bool APlayerCharacter::CanJumpInternal_Implementation() const
+{
+	return bIsCrouched || Super::CanJumpInternal_Implementation();
+}
+
+void APlayerCharacter::OnJumped_Implementation()
+{
+	if (bIsCrouched)
+	{
+		UnCrouch();
+	}
+}

@@ -26,4 +26,5 @@ void UFGBaseAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	UCharacterMovementComponent* CharacterMovement = CachedBaseCharacter->GetCharacterMovement();
 	Speed = CharacterMovement->Velocity.Size();
 	bIsFalling = CharacterMovement->IsFalling();
+	bIsCrouching = CharacterMovement->IsCrouching();
 }

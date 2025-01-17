@@ -23,6 +23,7 @@ void AFGPlayerController::SetupInputComponent()
 	InputComponent->BindAxis("TurnAtRate", this, &AFGPlayerController::TurnAtRate);
 	InputComponent->BindAxis("LookUpAtRate", this, &AFGPlayerController::LookUpAtRate);
 
+	InputComponent->BindAction("Crouch", EInputEvent::IE_Pressed, this, &AFGPlayerController::ChangeCrouchState);
 	InputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &AFGPlayerController::Jump);
 }
 
@@ -71,6 +72,14 @@ void AFGPlayerController::LookUpAtRate(float Value)
 	if (CachedBaseCharacter.IsValid())
 	{
 		CachedBaseCharacter->LookUpAtRate(Value);
+	}
+}
+
+void AFGPlayerController::ChangeCrouchState()
+{
+	if (CachedBaseCharacter.IsValid())
+	{
+		CachedBaseCharacter->ChangeCrouchState();
 	}
 }
 

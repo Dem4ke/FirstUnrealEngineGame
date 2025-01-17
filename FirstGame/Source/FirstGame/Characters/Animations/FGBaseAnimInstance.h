@@ -24,6 +24,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character animation")
 	bool bIsFalling = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character animation")
+	bool bIsCrouching = false;
+
 private:
 	TSoftObjectPtr<AFGBaseCharacter> CachedBaseCharacter; // Pointer to the base character
 };

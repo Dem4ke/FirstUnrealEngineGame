@@ -2,3 +2,16 @@
 
 
 #include "FGBaseCharacter.h"
+#include "GameFramework/CharacterMovementComponent.h"
+
+void AFGBaseCharacter::ChangeCrouchState()
+{
+	if (GetCharacterMovement()->IsCrouching())
+	{
+		UnCrouch();
+	}
+	else
+	{
+		Crouch();
+	}
+}

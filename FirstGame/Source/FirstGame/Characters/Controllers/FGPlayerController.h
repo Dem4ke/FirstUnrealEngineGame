@@ -26,6 +26,7 @@ private:
 	void LookUp(float Value);
 	void TurnAtRate(float Value);
 	void LookUpAtRate(float Value);
+	void ChangeCrouchState();
 	void Jump();
 
 private:
