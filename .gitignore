@@ -6,3 +6,7 @@ Intermediate/
 Saved/
 .vsconfig
 *.sln
+#don't ignore some folders
+!Diagrams/
+!Docs/
+!Raw/
